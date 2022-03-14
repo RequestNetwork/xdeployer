@@ -1,0 +1,1 @@
+{"version":3,"file":"hardhat.config.d.ts","sourceRoot":"","sources":["../../../../test/fixture-projects/hardhat-project-without-constructor/hardhat.config.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,iBAAiB,EAAE,MAAM,eAAe,CAAC;AAClD,OAAO,oBAAoB,CAAC;AAG5B,QAAA,MAAM,MAAM,EAAE,iBA8Bb,CAAC;AAEF,eAAe,MAAM,CAAC"}

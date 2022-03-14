@@ -1,0 +1,42 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.networks = void 0;
+// List of supported networks
+exports.networks = [
+    "localhost",
+    "hardhat",
+    "rinkeby",
+    "ropsten",
+    "kovan",
+    "goerli",
+    "bscTestnet",
+    "optimismTestnet",
+    "arbitrumTestnet",
+    "mumbai",
+    "hecoTestnet",
+    "fantomTestnet",
+    "fuji",
+    "sokol",
+    "moonbaseAlpha",
+    "alfajores",
+    "auroraTestnet",
+    "harmonyTestnet",
+    "spark",
+    "ethMain",
+    "bscMain",
+    "optimismMain",
+    "arbitrumMain",
+    "polygon",
+    "hecoMain",
+    "fantomMain",
+    "avalanche",
+    "gnosis",
+    "moonriver",
+    "moonbeam",
+    "celo",
+    "auroraMain",
+    "harmonyMain",
+    "autobahn",
+    "fuse",
+];
+//# sourceMappingURL=networks.js.map
