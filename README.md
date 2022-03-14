@@ -15,13 +15,13 @@ npm install --save-dev request-xdeployer @nomiclabs/hardhat-ethers @openzeppelin
 
 Or if you are using [Yarn](https://classic.yarnpkg.com):
 ```bash
-yarn add --dev request-xdeployer @nomiclabs/hardhat-ethers @openzeppelin/contracts
+yarn add --dev @requestnetwork/xdeployer @nomiclabs/hardhat-ethers @openzeppelin/contracts
 ```
 > **Note:** This plugin uses the optional chaining operator (`?.`). Optional chaining is _not_ supported in Node.js v13 and below.
 
 In your `hardhat.config.ts`:
 ```ts
-import "xdeployer";
+import "@requestnetwork/xdeployer";
 ```
 
 ## Required Plugins
