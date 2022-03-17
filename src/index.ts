@@ -17,7 +17,7 @@ import {
 } from "./constants";
 import "./type-extensions";
 import abi from "./abi/Create2Deployer.json";
-
+import { constants } from "ethers";
 import { NomicLabsHardhatPluginError } from "hardhat/plugins";
 import "@nomiclabs/hardhat-ethers";
 import { IDeploymentParams, IDeploymentResult } from "./types";
@@ -61,6 +61,18 @@ task(
       providers[i] = new hre.ethers.providers.JsonRpcProvider(
         hre.config.xdeploy.rpcUrls[i]
       );
+      if (hre.config.xdeploy.networks[i] === "celo") {
+        const originalBlockFormatter = providers[i].formatter._block;
+        providers[i].formatter._block = (value: any, format: any) => {
+          return originalBlockFormatter(
+            {
+              gasLimit: constants.Zero,
+              ...value,
+            },
+            format
+          );
+        };
+      }
       wallets[i] = new hre.ethers.Wallet(
         hre.config.xdeploy.signer,
         providers[i]

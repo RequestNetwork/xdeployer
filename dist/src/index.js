@@ -12,6 +12,7 @@ const constants_1 = require("./constants");
 Object.defineProperty(exports, "CREATE2_DEPLOYER_ADDRESS", { enumerable: true, get: function () { return constants_1.CREATE2_DEPLOYER_ADDRESS; } });
 require("./type-extensions");
 const Create2Deployer_json_1 = __importDefault(require("./abi/Create2Deployer.json"));
+const ethers_1 = require("ethers");
 const plugins_1 = require("hardhat/plugins");
 require("@nomiclabs/hardhat-ethers");
 (0, config_1.extendConfig)(config_2.xdeployConfigExtender);
@@ -43,6 +44,15 @@ require("@nomiclabs/hardhat-ethers");
         }
         for (let i = 0; i < hre.config.xdeploy.rpcUrls.length; i++) {
             providers[i] = new hre.ethers.providers.JsonRpcProvider(hre.config.xdeploy.rpcUrls[i]);
+            if (hre.config.xdeploy.networks[i] === "celo") {
+                const originalBlockFormatter = providers[i].formatter._block;
+                providers[i].formatter._block = (value, format) => {
+                    return originalBlockFormatter({
+                        gasLimit: ethers_1.constants.Zero,
+                        ...value,
+                    }, format);
+                };
+            }
             wallets[i] = new hre.ethers.Wallet(hre.config.xdeploy.signer, providers[i]);
             signers[i] = wallets[i].connect(providers[i]);
             let computedContractAddress;
@@ -55,7 +65,7 @@ require("@nomiclabs/hardhat-ethers");
                 if (hre.config.xdeploy.salt) {
                     try {
                         computedContractAddress = await create2Deployer[i].computeAddress(hre.ethers.utils.id(hre.config.xdeploy.salt), hre.ethers.utils.keccak256(initcode.data));
-                    }
+                      }
                     catch (err) {
                         throw new Error("Contract address could not be computed, check your contract name and arguments");
                     }
